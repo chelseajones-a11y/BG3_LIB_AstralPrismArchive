@@ -116,6 +116,26 @@ const COMPANIONS = [
   { id: 'karlach', name: 'Karlach', avatar: '🔥', quote: 'Hey soldier! Got any books with pictures of big swords?' }
 ];
 
+// MLIS Standard Audio File Manifest Mapping (Resolves Item_ID to exact physical audio filenames)
+const AUDIO_FILE_MAP = {
+  // BB-Audio files (.m4a)
+  "SCL-BB-04-01": "SCL-BB-04-01_Audio_ABrushWithEvilOnHags.m4a",
+  "SCL-BB-04-07": "SCL-BB-04-07_Audio_AIsForAzuthAndOtherGodsII.m4a",
+  "SCL-BB-04-08": "SCL-BB-04-08_Audio_APleasurableDeal.m4a",
+  "SCL-BB-04-86": "SCL-BB-04-86_Audio_OnGoblinsMyLifeAndTimes.m4a",
+  "SCL-BB-04-108": "SCL-BB-04-108_Audio_ThreadbareBook.m4a",
+  "SCL-BB-04-140": "SCL-BB-04-140_Audio_TreatiseOnSussurTreeFlowers.m4a",
+  "SCL-BB-04-15": "SCL-BB-04-15_Audio_BookOfDeadGods.m4a",
+  "SCL-BB-04-92": "SCL-BB-04-92_Audio_SelunitePrayerBook.m4a",
+
+  // BoH-AUDIO files (.mp3)
+  "BoH-01-01": "BoH-01-01_Audio_TheUnbrokenCircleOfZerthimon.mp3",
+  "BoH-01-12": "BoH-01-12_Audio_PrayerToIlmater.mp3",
+  "BoH-02-05": "BoH-02-05_Audio_NotesOnCeremorphosis.mp3",
+  "BoH-03-02": "BoH-03-02_Audio_RaidOrdersForEmeraldGrove.mp3",
+  "BoH-04-11": "BoH-04-11_Audio_ZhentarimShipmentManifest.mp3"
+};
+
 // Act 1 Master Database with Local Relative Audio Paths for GitHub Pages / public hosting
 const CODICES_DATABASE = [
   {
@@ -124,7 +144,6 @@ const CODICES_DATABASE = [
     Category: "Book / Codex",
     Voice_Narrator: "Chelsea Jones",
     Banned_Status: true,
-    Audio_Url: "./audio/BB-Audio/SCL-BB-04-01.m4a",
     Audio_Source: "BB-Audio",
     Audio_Duration: "3:08",
     Location: "Sunlit Wetlands / Riverside Teahouse",
@@ -146,7 +165,6 @@ Their bargains are tailored to your deepest desires—a lost eye returned, a lov
     Category: "Book / Primer",
     Voice_Narrator: "Chelsea Jones",
     Banned_Status: false,
-    Audio_Url: "./audio/BB-Audio/SCL-BB-04-07.m4a",
     Audio_Source: "BB-Audio",
     Audio_Duration: "0:36",
     Location: "Blighted Village / Schoolhouse",
@@ -168,7 +186,6 @@ C is for Cyric, Prince of Lies, who rewrote the scrolls of fate to serve his own
     Category: "Book / Codex",
     Voice_Narrator: "Chelsea & Sebastian",
     Banned_Status: true,
-    Audio_Url: "./audio/BB-Audio/SCL-BB-04-08.m4a",
     Audio_Source: "BB-Audio",
     Audio_Duration: "1:45",
     Location: "Risen Road / Tollhouse",
@@ -183,12 +200,28 @@ C is for Cyric, Prince of Lies, who rewrote the scrolls of fate to serve his own
 In exchange for immediate liberation from mortal suffering, the petitioner assigns all rights, claims, and tithes of their immortal soul unto the House of Hope upon death. No mortal magic or clerical plea shall void this agreement.`
   },
   {
+    Item_ID: "SCL-BB-04-86",
+    Item_Name: "On Goblins: My Life and Times",
+    Category: "Book / Ethnography",
+    Voice_Narrator: "Chelsea Jones",
+    Banned_Status: false,
+    Audio_Source: "BB-Audio",
+    Audio_Duration: "1:49",
+    Location: "Blighted Village / Apothecary",
+    Coordinates: "X: 32 Y: 380",
+    Companion: "astarion",
+    Summary: "Firsthand anthropological record describing goblin clan hierarchy, culinary habits, and worship of Maglubiyet.",
+    Tags: ["#Goblins", "#Ethnography", "#Maglubiyet"],
+    Wiki_Url: "https://bg3.wiki/wiki/On_Goblins:_My_Life_and_Times",
+    Camp_Trigger: false,
+    Full_Text: `Goblins are simple creatures governed by brute strength and immediate self-preservation. Their clans operate strictly under the rule of the largest sub-commander or whichever shaman claims divine mandate.`
+  },
+  {
     Item_ID: "SCL-BB-04-108",
     Item_Name: "Threadbare Book",
     Category: "Diary / Fragmented Journal",
     Voice_Narrator: "Chelsea Jones",
     Banned_Status: false,
-    Audio_Url: "./audio/BB-Audio/SCL-BB-04-108.m4a",
     Audio_Source: "BB-Audio",
     Audio_Duration: "0:21",
     Location: "Wilderness / Sunlit Wetlands",
@@ -206,7 +239,6 @@ In exchange for immediate liberation from mortal suffering, the petitioner assig
     Category: "Codex / Sacred History",
     Voice_Narrator: "Sebastian Jones",
     Banned_Status: true,
-    Audio_Url: "./audio/BoH-AUDIO/BoH-01-01.mp3",
     Audio_Source: "BoH-AUDIO",
     Audio_Duration: "2:15",
     Location: "Crèche Yllek / Infirmary",
@@ -224,7 +256,6 @@ In exchange for immediate liberation from mortal suffering, the petitioner assig
     Category: "Scroll / Liturgy",
     Voice_Narrator: "Chelsea Jones",
     Banned_Status: false,
-    Audio_Url: "./audio/BoH-AUDIO/BoH-01-12.mp3",
     Audio_Source: "BoH-AUDIO",
     Audio_Duration: "0:48",
     Location: "Emerald Grove / Sacred Pool",
@@ -242,7 +273,6 @@ In exchange for immediate liberation from mortal suffering, the petitioner assig
     Category: "Book / Academic Botany",
     Voice_Narrator: "Chelsea Jones",
     Banned_Status: false,
-    Audio_Url: "./audio/BB-Audio/SCL-BB-04-140.m4a",
     Audio_Source: "BB-Audio",
     Audio_Duration: "1:21",
     Location: "Underdark / Dread Hollow",
@@ -260,7 +290,6 @@ In exchange for immediate liberation from mortal suffering, the petitioner assig
     Category: "Note / Dissection Study",
     Voice_Narrator: "Sebastian Jones",
     Banned_Status: true,
-    Audio_Url: "./audio/BoH-AUDIO/BoH-02-05.mp3",
     Audio_Source: "BoH-AUDIO",
     Audio_Duration: "2:04",
     Location: "Nautiloid / Transformation Chamber",
@@ -335,14 +364,21 @@ export default function App() {
       setActiveAudio(codex);
       setCurrentTime(0);
 
-      // Stream directly from local relative directory path
-      audio.src = codex.Audio_Url;
+      // Resolve exact physical file name from manifest map or construct default extension
+      const folder = codex.Audio_Source === 'BoH-AUDIO' ? 'BoH-AUDIO' : 'BB-Audio';
+      const defaultExt = codex.Audio_Source === 'BoH-AUDIO' ? 'mp3' : 'm4a';
+      const resolvedFilename = AUDIO_FILE_MAP[codex.Item_ID] || `${codex.Item_ID}.${defaultExt}`;
+
+      // Construct local public folder path
+      const audioUrl = `./audio/${folder}/${resolvedFilename}`;
+
+      audio.src = audioUrl;
       audio.volume = isMuted ? 0 : volume;
 
       audio.play().then(() => {
         setIsPlaying(true);
       }).catch((err) => {
-        console.log('Unable to stream local audio file:', err);
+        console.log('Unable to stream local audio file:', audioUrl, err);
         setIsPlaying(false);
       });
     }
@@ -428,7 +464,7 @@ export default function App() {
 
             <div>
               <h1 className="text-xl md:text-2xl font-bold tracking-widest text-amber-200 uppercase font-serif flex items-center gap-2">
-                THE ASTRAL PRISM ARCHIVE
+                WELCOME TO THE ASTRAL PRISM ARCHIVE
               </h1>
               <p className="text-xs text-amber-300/80 font-sans tracking-wide">
                 A Protected Repository of Recovered Tomes, Whispering Scrolls & Immersive Voice Audio
