@@ -28,11 +28,13 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install and Build
-        run: |
-          cd astral-prism-archive
-          npm install
-          npm run build
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./astral-prism-archive
+
+      - name: Build project
+        run: npm run build
+        working-directory: ./astral-prism-archive
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
