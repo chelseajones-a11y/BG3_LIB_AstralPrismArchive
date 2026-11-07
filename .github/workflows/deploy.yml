@@ -31,17 +31,31 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+<<<<<<< HEAD
         working-directory: astral-prism-archive
 
       - name: Build project
         run: npm run build
         working-directory: astral-prism-archive
+=======
+
+      - name: Build project
+        run: npm run build
+>>>>>>> 978b14104713baf9925e42aa8e3fe7c4e58a6c2f
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
+<<<<<<< HEAD
           path: astral-prism-archive/dist
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+=======
+          path: './dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+>>>>>>> 978b14104713baf9925e42aa8e3fe7c4e58a6c2f
