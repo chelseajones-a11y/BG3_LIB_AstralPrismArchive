@@ -8,11 +8,11 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  const filtered = archiveCatalog.filter(item => {
+  const filtered = archiveCatalog ? archiveCatalog.filter(item => {
     const matchesSearch = item.title.toLowerCase().includes(search.toLowerCase());
     const matchesCollection = collection === 'All' || item.collection === collection;
     return matchesSearch && matchesCollection;
-  });
+  }) : [];
 
   const totalPages = Math.ceil(filtered.length / itemsPerPage);
   const paginated = filtered.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
@@ -23,7 +23,7 @@ export default function App() {
         <Compass size={32} />
         <h1>Astral Prism Archive</h1>
       </header>
-      <p><Sparkles size={16} inline /> Total Lore Entries: {archiveCatalog.length}</p>
+      <p><Sparkles size={16} /> Total Lore Entries: {archiveCatalog ? archiveCatalog.length : 0}</p>
       
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.5rem', border: '1px solid #ccc', padding: '0.5rem', borderRadius: '4px' }}>
