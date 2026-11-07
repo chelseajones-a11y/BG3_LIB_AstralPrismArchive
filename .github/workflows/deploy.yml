@@ -20,29 +20,15 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./astral-prism-archive
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build project
-        run: npm run build
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - run: npm install
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
         with:
-          path: './astral-prism-archive/dist'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
+          path: './dist'
+      - id: deployment
         uses: actions/deploy-pages@v4
