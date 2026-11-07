@@ -2,7 +2,7 @@ name: Deploy Astral Prism Archive to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -11,8 +11,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: 'pages'
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -20,6 +20,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./astral-prism-archive
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -31,31 +34,15 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-<<<<<<< HEAD
-        working-directory: astral-prism-archive
 
       - name: Build project
         run: npm run build
-        working-directory: astral-prism-archive
-=======
-
-      - name: Build project
-        run: npm run build
->>>>>>> 978b14104713baf9925e42aa8e3fe7c4e58a6c2f
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-<<<<<<< HEAD
-          path: astral-prism-archive/dist
+          path: './astral-prism-archive/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-=======
-          path: './dist'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
->>>>>>> 978b14104713baf9925e42aa8e3fe7c4e58a6c2f
